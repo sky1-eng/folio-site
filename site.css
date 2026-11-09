@@ -9,6 +9,8 @@
   --accent: #8eb8ff;
   --blue: #488cff;
   --wrap: 76rem;
+  --header-height: 4.7rem;
+  scroll-padding-top: var(--header-height);
   font-family: "Segoe UI", system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -26,9 +28,15 @@ section[id] { scroll-margin-top: 1.5rem; }
 .wrap { width: min(var(--wrap), calc(100% - 5rem)); margin-inline: auto; }
 .section-pad { padding-block: clamp(3.8rem, 7vw, 6rem); }
 
-.header { border-bottom: 1px solid var(--edge); }
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--bg);
+  border-bottom: 1px solid var(--edge);
+}
 .header-row, .footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.header-row { min-height: 4.7rem; }
+.header-row { min-height: var(--header-height); }
 .brand { display: inline-flex; align-items: center; gap: .65rem; font-size: 1.35rem; font-weight: 700; }
 .brand img { flex: none; }
 .brand-label { font-size: .62rem; font-weight: 650; letter-spacing: .14em; color: var(--muted); padding-left: .65rem; border-left: 1px solid var(--edge); }
@@ -122,7 +130,7 @@ summary:hover { color: var(--accent); }
 
 @media (max-width: 590px) {
   .wrap { width: calc(100% - 2rem); }
-  .header-row { min-height: 4.15rem; }
+  :root { --header-height: 4.15rem; }
   .brand-label, nav a:not(.nav-download) { display: none; }
   .hero { padding-block: 2.8rem 3.5rem; }
   .workspace { padding: .5rem; }
